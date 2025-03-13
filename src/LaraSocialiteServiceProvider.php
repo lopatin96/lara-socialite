@@ -19,6 +19,8 @@ class LaraSocialiteServiceProvider extends ServiceProvider
             __DIR__ . '/../config/lara-socialite.php' => config_path('lara-socialite.php'),
         ], 'lara-socialite-config');
 
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
         $this->publishesMigrations([
             __DIR__ . '/../database/migrations' => database_path('migrations'),
         ], 'lara-socialite-migrations');
