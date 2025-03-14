@@ -10,7 +10,6 @@ composer require lopatin96/lara-socialite
 
 ### Fillable
 Add new fillables to User model:
-
 ```php
 protected $fillable = [
     …
