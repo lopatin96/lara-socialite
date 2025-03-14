@@ -11,12 +11,12 @@ use Illuminate\Auth\Events\Registered;
 
 class LaraSocialiteController extends Controller
 {
-    public function socialLogin(string $social): RedirectResponse
+    public function socialLogin(string $social)
     {
         return Socialite::driver($social)->redirect();
     }
 
-    public function handleProviderCallback(string $social): RedirectResponse
+    public function handleProviderCallback(string $social)
     {
         try {
             $user = Socialite::driver($social)->stateless()->user();

@@ -1,0 +1,1 @@
+@include("lara-socialite::socialite", ['title' => 'lara-socialite::common.sign-in.title'])

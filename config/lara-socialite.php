@@ -4,7 +4,6 @@ return [
 
     'providers' => [
         'google',
-        'facebook',
     ],
 
 ];

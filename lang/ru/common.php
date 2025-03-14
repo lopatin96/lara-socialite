@@ -2,8 +2,8 @@
 
 return [
 
-    'Sign in with :social' => 'Войти через :social',
-    'Sign up with :social' => 'Зарегистрироваться через :social',
+    'sign-in.title' => 'Войти через :Social',
+    'sign-up.title' => 'Зарегистрироваться через :Social',
 
     'or' => 'или',
 

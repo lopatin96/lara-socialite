@@ -11,8 +11,8 @@ return new class extends Migration
         Schema::table('users', static function (Blueprint $table) {
             $table->string('email')->nullable()->change();
             $table->string('password')->nullable()->change();
-            $table->string('social_provider');
-            $table->string('social_provider_user_id');
+            $table->string('social_provider')->nullable();
+            $table->string('social_provider_user_id')->nullable();
         });
     }
 

@@ -2,8 +2,8 @@
 
 return [
 
-    'Sign in with :social' => 'Sign in with :social',
-    'Sign up with :social' => 'Sign up with :social',
+    'sign-in.title' => 'Sign in with :Social',
+    'sign-up.title' => 'Sign up with :Social',
 
     'or' => 'or',
 
