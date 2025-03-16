@@ -24,18 +24,18 @@ class LaraSocialiteController extends Controller
             return redirect('/login');
         }
 
-        $user = User::firstOrNew(
-            [
-                'social_provider_user_id' => $socialUser->getId(),
-                'social_provider' => $social,
-            ]
-        );
+        $user = User::firstOrNew([
+            'social_provider_user_id' => $socialUser->getId(),
+            'social_provider' => $social,
+        ]);
 
         if (! $user->exists) {
             $user->forceFill([
                 'name' => $socialUser->getName(),
                 'email' => $socialUser->getEmail(),
                 'email_verified_at' => $socialUser->getEmail() ? now() : null,
+                'social_provider_user_id' => $socialUser->getId(),
+                'social_provider' => $social,
             ])->save();
 
             event(new Registered($user));
