@@ -11,32 +11,33 @@ use Illuminate\Auth\Events\Registered;
 
 class LaraSocialiteController extends Controller
 {
-    public function socialLogin(string $social)
+    public function socialLogin(string $social): RedirectResponse
     {
         return Socialite::driver($social)->redirect();
     }
 
-    public function handleProviderCallback(string $social)
+    public function handleProviderCallback(string $social): RedirectResponse
     {
         try {
-            $user = Socialite::driver($social)->stateless()->user();
+            $socialUser = Socialite::driver($social)->stateless()->user();
         } catch (Exception) {
             return redirect('/login');
         }
 
-        $user = User::firstOrCreate(
+        $user = User::firstOrNew(
             [
-                'social_provider_user_id' => $user->getId(),
+                'social_provider_user_id' => $socialUser->getId(),
                 'social_provider' => $social,
-            ],
-            [
-                'name' => $user->getName(),
-                'email' => $user->getEmail(),
-                'email_verified_at' => $user->getEmail() ? now() : null,
             ]
         );
 
-        if ($user->wasRecentlyCreated) {
+        if (! $user->exists) {
+            $user->forceFill([
+                'name' => $socialUser->getName(),
+                'email' => $socialUser->getEmail(),
+                'email_verified_at' => $socialUser->getEmail() ? now() : null,
+            ])->save();
+
             event(new Registered($user));
         }
 

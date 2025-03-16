@@ -8,16 +8,6 @@ You can install this package via composer:
 composer require lopatin96/lara-socialite
 ```
 
-### Fillable
-Add new fillables to User model:
-```php
-protected $fillable = [
-    …
-    'social_provider_user_id',
-    'social_provider',
-];
-```
-
 ### Define social providers
 Add/remove providers in `lara-social.php`
 
